@@ -10,7 +10,7 @@
 #include <Servo.h>
 
 // Wi-Fi credentials
-const char* ssid = "Prashanth";    
+const char* ssid = "Sudeep";    
 const char* password = "12345678901"; 
 
 // Telegram credentials
