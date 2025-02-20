@@ -58,13 +58,27 @@ The **IoT-Based Automated Water Gate Control System** is designed to monitor and
 4. Users can manually control the gate via **Blynk**.
 5. A **buzzer** activates if water levels reach flood conditions.
 
-## Circuit Diagram
-*(To be added: Include an image of the wiring connections for ESP32, water sensor, servo motors, and buzzer.)*
+## Pin Configuration 
+NodeMCU (ESP8266):
 
-## Future Enhancements
-- **Machine Learning Integration** for predictive flood control.
-- **Solar-powered operation** for sustainability.
-- **Enhanced security** using authentication for manual control.
+Component	ESP32 Pin	Equivalent NodeMCU (ESP8266) Pin
+Water Sensor	GPIO34 (A2)	A0 (Only one ADC pin available)
+Servo Motor 1	GPIO18	D5 (GPIO14)
+Servo Motor 2	GPIO19	D6 (GPIO12)
+Buzzer	GPIO5	D1 (GPIO5)
+Wi-Fi Connection	Built-in	Built-in
+Blynk Virtual Pin for Water Level	V0	V0
+Blynk Virtual Pin for Gate Control	V1	V1
+Notes for NodeMCU (ESP8266) Adaptation:
+Water Sensor: ESP8266 has only one analog input (A0) with a 10-bit ADC (0-1023), so you will need to modify the analogRead scaling accordingly:
+cpp
+Copy
+Edit
+float waterLevelPercentage = (analogRead(A0) / 1023.0) * 100;
+Servo Motors: Use D5 (GPIO14) and D6 (GPIO12), as these pins support PWM.
+Buzzer: Use D1 (GPIO5) as it supports digital output.
+Wi-Fi and Blynk: No changes are needed, as Wi-Fi is built-in.
+Telegram Bot: No changes are needed for communication, but ensure secure connections work with ESP8266.
 
 
 
